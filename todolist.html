@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+  <title>To-Do List App</title>
+  <script>
+    function addItem() {
+        var newItem = document.createElement("div");
+        newItem.innerHTML = document.getElementById("box").value;
+        newItem.onclick = removeItem;
+        document.getElementById("list").appendChild(newItem);
+        saveList();
+    }    
+    function removeItem() {
+        document.getElementById("list").removeChild(this);
+        saveList();
+    }
+    function saveList() {
+        localStorage.storedList = document.getElementById("list").innerHTML;
+    }
+    function loadList() {
+        document.getElementById("list").innerHTML = localStorage.storedList;
+        for(var i = 0; i <list.children.length; i++) {
+            list.children[i].onclick = removeItem;
+        }
+    }
+  </script>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css">
+</head>
+<body>
+<div class="w3-panel w3-border-grey"; style="background: linear-gradient(grey, lightgrey); border: solid black; padding: 20px">
+<p style="text-align: center; text-decoration: underline; font-size: 25px; color: red; text-shadow: 2px 2px 4px #000000;">Today's To-Do List</p>
+<input class="w3-input w3-border w3-round" type="text" id="box" value="Type here to add a task"/>
+</br>
+<button class="w3-button w3-red w3-round-xxlarge" style="opacity: 0.9;" onclick="addItem();">Add Item</button>
+<br/>
+</div>
+<div id="list" style="border: groove grey; font-size: 25px; background-color: white; color: red; margin: 2px;"></div>
+<footer style="text-align: center; font-family: courier;">
+  By Tim Parker
+</footer>
+<script>
+  if(localStorage.storedList) {
+    loadList();
+  }
+</script>
+</body>
+</html> 
